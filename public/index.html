@@ -13,14 +13,25 @@
   <div id="app">
     <h1>Currency Convertion Calculator</h1>
 
-    <form v-on:submit.prevent="convert">
+
+    <form v-on:submit.prevent="convertAmount">
+      <label for="fromEuros">From Euros</label>
+      <input type="radio" v-model="direction" value="fromEuros">
+      <label for="toEuros">To Euros</label>
+      <input type="radio" v-model="direction" value="toEuros">
       <label for="amountToConvert">Amount:</label>
-      <input type="number">
+      <input type="number" id="amountToConvert" v-model.number="amountToConvert">
       <label for="rateToUse">Rate:</label>
       <select v-model="selectedRate" id="rateToUse" name="rate">
         <option v-for="(rate, country) in allRates" v-bind:value="rate">
           {{ country }} - {{ rate }}
         </option>
+      </select>
+
+      <label for="convertedAmount">Converted Amount:</label>
+      <span id="convertedAmount" v-model.number="convertedAmount">{{ convertedAmount }}</span>
+      <input type="submit" value="Convert Amount">
+
     </form>
     <!-- <div id="idRate" v-for="(value, name) in allRates">
       {{ name }}: {{ value }}
