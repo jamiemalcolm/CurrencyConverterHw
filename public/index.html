@@ -11,8 +11,20 @@
 
 <body>
   <div id="app">
+    <h1>Currency Convertion Calculator</h1>
 
-
+    <form v-on:submit.prevent="convert">
+      <label for="amountToConvert">Amount:</label>
+      <input type="number">
+      <label for="rateToUse">Rate:</label>
+      <select v-model="selectedRate" id="rateToUse" name="rate">
+        <option v-for="(rate, country) in allRates" v-bind:value="rate">
+          {{ country }} - {{ rate }}
+        </option>
+    </form>
+    <!-- <div id="idRate" v-for="(value, name) in allRates">
+      {{ name }}: {{ value }}
+    </div> -->
   </div>
 
 </body>
