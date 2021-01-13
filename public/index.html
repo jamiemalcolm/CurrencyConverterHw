@@ -13,12 +13,19 @@
   <div id="app">
     <h1>Currency Convertion Calculator</h1>
 
-
+    <h2>💶 </h2>
     <form v-on:submit.prevent="convertAmount">
       <label for="fromEuros">From Euros</label>
       <input type="radio" v-model="direction" value="fromEuros">
       <label for="toEuros">To Euros</label>
       <input type="radio" v-model="direction" value="toEuros">
+      <label for="fromOther">From Other Currency</label>
+      <input type="radio" v-model="direction" value="fromOther">
+      <select v-if="direction === 'fromOther'" v-model="selectRateFrom" id="rateFrom">
+        <option v-for="(rate, country) in allRates" v-bind:value="rateFrom">
+          {{country}}-{{rate}}
+        </option>
+      </select>
       <label for="amountToConvert">Amount:</label>
       <input type="number" id="amountToConvert" v-model.number="amountToConvert">
       <label for="rateToUse">Rate:</label>

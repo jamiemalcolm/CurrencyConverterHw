@@ -8,7 +8,8 @@ document.addEventListener('DOMContentLoaded', function () {
       selectedRate: 0,
       amountToConvert: 0,
       convertedAmount: 0,
-      direction: ""
+      direction: "",
+      rateFrom: 0,
 
     },
     mounted: function (){
@@ -24,10 +25,12 @@ document.addEventListener('DOMContentLoaded', function () {
         if(this.direction === "fromEuros"){
           let unRounded = this.amountToConvert * this.selectedRate;
           this.convertedAmount =  Math.round((unRounded + Number.EPSILON) * 100) / 100;
-      }else {
+      }else if(this.direction === "toEuros"){
         let unRounded = this.amountToConvert / this.selectedRate;
         this.convertedAmount = Math.round((unRounded + Number.EPSILON) * 100) / 100;
-        
+      } else{
+        let unRounded = (this.amountToConvert * rateFrom) * this.selectedRate;
+        this.convertedAmount = Math.round((unRounded + Number.EPSILON) *100) /100;
       }
     }
     },
